@@ -1,0 +1,21 @@
+{
+  "name": "next-test-form-material-ui",
+  "version": "1.0.0",
+  "description": "Using next.js + materialUI to create form to testing your React.js level",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "clsx": "latest",
+    "next": "latest",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "Elvis Wong",
+  "license": "MIT"
+}

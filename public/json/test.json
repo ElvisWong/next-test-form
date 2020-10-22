@@ -1,0 +1,31 @@
+{
+  "title": "React.js Quiz",
+  "questions": [
+    {
+      "question": "What is the first question?",
+      "isMultiple": false,
+      "answers": [
+        {
+          "index": 0,
+          "isCorrect": true,
+          "value": "This one"
+        },
+        {
+          "index": 1,
+          "isCorrect": false,
+          "value": "The next one"
+        },
+        {
+          "index": 2,
+          "isCorrect": false,
+          "value": "The third one"
+        },
+        {
+          "index": 3,
+          "isCorrect": false,
+          "value": "The forth one"
+        }
+      ]
+    }
+  ]
+}
