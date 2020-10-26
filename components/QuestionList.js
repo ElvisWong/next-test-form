@@ -81,6 +81,8 @@ const QuestionList = ({
   const onSubmit = (event) => {
     event.preventDefault();
     handleSubmit(event, yourChoice);
+    // reset timer
+    setTimeEnd(true);
   };
 
   return (

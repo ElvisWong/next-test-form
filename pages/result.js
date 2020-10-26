@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const About = ({ questions, answers }) => {
+const Result = ({ questions, answers }) => {
   const { ans, ansDispatch } = useContext(AnswerContext);
   const [score, setScore] = useState();
 
@@ -37,12 +37,12 @@ const About = ({ questions, answers }) => {
 
   const classes = useStyles();
   return (
-    questions ?
+    questions && ans?.ans ?
     <Container>
       <Box maxWidth="sm" m={2} p={2}>
         <Container>
           {
-            ans.ans.length ?
+            ans?.ans.length ?
             <>
               <Typography variant="h4" component="h1" gutterBottom>
                 My Results: {score}
@@ -84,7 +84,7 @@ const About = ({ questions, answers }) => {
   );
 }
 
-export default About;
+export default Result;
 
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do

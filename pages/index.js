@@ -65,7 +65,7 @@ function Index({ title, questions }) {
               currentIndex < 0 ?
                 <>
                   <p>This repo is inspired by: Ben Awad - <a href="https://www.youtube.com/watch?v=bx3--22D4E4&t=54s&ab_channel=BenAwad" target="_blank">Coding Interviews are Broken</a></p>
-                  <Typography variant="body1" component="body1" className={classes.textBody}>
+                  <Typography variant="body1" component="p" className={classes.textBody}>
                     {`The purpose of this test is to show what 's the best way to test whether the developer are managed to know React.js.
                     \n
                     Actually why technical test for developers will be like the exam I have in university that I hated most ?

@@ -28,6 +28,12 @@ const [timeLeft, setTimeLeft] = useState();
   }, [seconds]);
 
   useEffect(() => {
+    if (!timeEnd) {
+      setTimeLeft(seconds);
+    }
+  }, [timeEnd]);
+
+  useEffect(() => {
     // exit early when we reach 0
     if (timeLeft <= 0) {
        setTimeEnd(true);
