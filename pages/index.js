@@ -1,87 +1,94 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import WindowFocusHandler from "../src/WindowFocusHandler";
 import Link from '../src/Link';
+import QuestionList from '../components/QuestionList';
 import Copyright from '../src/Copyright';
 import {
-  FormControl,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-  Paper,
-  Button,
+  Box, Button,
 } from '@material-ui/core';
 import { server } from '../config';
+import { AnswerContext } from '../src/answerReducer';
+
+const useStyles = makeStyles(theme => ({
+  textBody: {
+    whiteSpace: "pre-line"
+  },
+  button: {
+    width: "30%",
+    margin: "20px 35%"
+  }
+}));
 
 function Index({ title, questions }) {
-  console.log("props: ", title, questions);
-  const [answer, setQuestionAnswer] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState({});
-  const [currentAnswer, setCurrentAnswer] = useState({ans: []});
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(-1);
+  // const [state, dispatch] = useReducer(AnswerReducer, answerInitialState);
+  const { ans, ansDispatch } = useContext(AnswerContext);
+
+  const classes = useStyles();
 
   useEffect(() => {
-    setCurrentQuestion(questions[currentIndex]);
-    console.log("setCurrentQuestion: ", currentIndex);
+    if (currentIndex > -1 && currentIndex < questions.length) {
+      setCurrentQuestion(questions[currentIndex]);
+    }
   }, [currentIndex]);
 
-  const changeAnswer = (event) => {
-    if (event.target.checked) {
-      const result = Number(event.target.name.replace("checkbox_", ""));
-      setCurrentAnswer(prev => Object.assign({}, prev, {
-          ans: currentQuestion.isMultiple ? [...prev.ans, result] : [result]
-        })
-      );
-    }
-  };
-
-  const submitAnswer = (event) => {
-    if (currentAnswer.ans && currentAnswer.ans.length) {
-      setQuestionAnswer([...answer, currentAnswer]);
-      setCurrentAnswer({ans: []});
+  const handleSubmit = (event, answer) => {
+    if (answer.length) {
+      ansDispatch({ type: "ADD_ANSWER", value: answer });
       setCurrentIndex(x => x + 1);
     }
   }
 
   return (
-    <Container maxWidth="sm">
-      <Paper>
+    <Container>
+      <Box maxWidth="sm" m={2} p={2}>
         <Container>
           <Typography variant="h4" component="h1" gutterBottom>
             { title }
           </Typography>
-          <FormGroup row={false}>
-                {
-                  currentIndex >= questions.length ? 
-                  <Link href="/about" color="secondary">
-                    check result
-                  </Link> :
-                  <>
-                    <Typography variant="h4" component="h1" gutterBottom>
-                      { currentQuestion.question }
-                    </Typography>
-                    {
-                      currentQuestion.answers ?
-                      currentQuestion.answers.map((item, idx) => (
-                        <FormControl key={idx} fullWidth={true}>
-                          <FormControlLabel
-                            control={<Checkbox checked={currentAnswer.ans.includes(item.index)} onChange={changeAnswer} name={`checkbox_${item.index}`} />}
-                            label={item.value}
-                          />  
-                        </FormControl>
-                      ))
-                    : null }
-                    <Button variant="contained" color="primary" onClick={submitAnswer} disabled={!currentAnswer.ans.length}>
-                      Submit
-                    </Button>
-                  </>
-                }
-          </FormGroup>
+          {
+            currentIndex >= questions.length ? 
+            <>
+              <Typography variant="h4" component="h4" gutterBottom>
+                "You have answered all the questions"
+              </Typography>
+              <Link href="/result" color="secondary">
+                check result
+              </Link>
+            </>
+            : 
+            (
+              currentIndex < 0 ?
+                <>
+                  <p>This repo is inspired by: Ben Awad - <a href="https://www.youtube.com/watch?v=bx3--22D4E4&t=54s&ab_channel=BenAwad" target="_blank">Coding Interviews are Broken</a></p>
+                  <Typography variant="body1" component="body1" className={classes.textBody}>
+                    {`The purpose of this test is to show what 's the best way to test whether the developer are managed to know React.js.
+                    \n
+                    Actually why technical test for developers will be like the exam I have in university that I hated most ?
+                    If you want to test the concept for developers using MC questions, at least you should provide enough time to think instead of having less than 1 minute for each questions.
+                    \n
+                    Better way to test a developer is suggested to have a short(ard 20 mins) coding test.And ask them about why you would deal with the problem like this, which is better to show their problem - solving skills.And Google search is necessary
+                    for every developers to do their daily work.
+                    \n
+                    So..., does cheating matter for developer to work on their technical test ? ?`}
+                  </Typography>
+                  <Button variant="contained" className={classes.button} onClick={(e) => setCurrentIndex(x => x + 1)}>Start</Button>
+                </>
+                :
+                <QuestionList
+                  numOfQuestions={questions.length}
+                  index={currentIndex}
+                  currentQuestion={currentQuestion}
+                  handleSubmit={handleSubmit}
+                  />
+            )
+          }
         </Container>
-      </Paper>
+      </Box>
       <Copyright />
-      <WindowFocusHandler />
     </Container>
   );
 }
@@ -95,9 +102,10 @@ export const getStaticProps = async() => {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res = await fetch(`${server}/json/test.json`);
-  const test = await res.json();
+  let test = await res.json();
 
-  console.log("question: ", test, test.questions);
+  // random shuffle answer order
+  test.questions.forEach((q, idx) => q.choices = q.choices.sort(() => .5 - Math.random()));
 
   return {
     props: {

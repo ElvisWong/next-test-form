@@ -1,35 +1,27 @@
-# React.js Test
- 
-The purpose of this test is to show what's the best way to test whether the interviewees are managed to know React.js
+# React.js MC Test
+
+This repo is inspired by: Ben Awad - [Coding Interviews are Broken](https://www.youtube.com/watch?v=bx3--22D4E4&t=54s&ab_channel=BenAwad)
+
+The purpose of this test is to show what's the best way to test whether the developer are managed to know React.js
+
+Actually why technical test for developers will be like the exam I have in university that I hated most?
+
+If you want to test the concept for developers using MC questions, at least you should provide enough time to think instead of having less than 1 minute for each questions.
+
+Better way to test a developer is suggested to have a short(ard 20mins) coding test. And ask them about why you would deal with the problem like this, which is better to show their problem-solving skills. And Google search is necessary for every developers to do their daily work.
+
+So..., does cheating matter for developer to work on their technical test??
 
 ## Installation
- 
-Here's how you track your website with Quickmarks:
- 
-TODO: **ADD INFO**
- 
-## Usage
- 
-TODO: Write usage instructions
- 
-## Contributing
- 
-## History
- 
-Version 0.1 (2015-05-23) - adding Devise and core Rails functionality
- 
-## Credits
- 
-Lead Developer - Elvis Wong (@ElvisWong)
- 
-## License
- 
-The MIT License (MIT)
 
-Copyright (c) 2020 Elvis Wong
+First, install node_modules:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+```bash
+npm install
+```
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+Then, run the server:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```bash
+npm run dev
+```

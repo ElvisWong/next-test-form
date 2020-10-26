@@ -4,28 +4,72 @@
     {
       "question": "What is the first question?",
       "isMultiple": false,
-      "answers": [
+      "time": 90,
+      "choices": [
         {
           "index": 0,
-          "isCorrect": true,
           "value": "This one"
         },
         {
           "index": 1,
-          "isCorrect": false,
           "value": "The next one"
         },
         {
           "index": 2,
-          "isCorrect": false,
           "value": "The third one"
         },
         {
           "index": 3,
-          "isCorrect": false,
           "value": "The forth one"
         }
-      ]
+      ],
+      "answers": [0]
+    },
+    {
+      "question": "Second question?",
+      "isMultiple": false,
+      "time": 90,
+      "choices": [{
+          "index": 0,
+          "value": "This one"
+        },
+        {
+          "index": 1,
+          "value": "The next one"
+        },
+        {
+          "index": 2,
+          "value": "The third one"
+        },
+        {
+          "index": 3,
+          "value": "The forth one"
+        }
+      ],
+      "answers": [2]
+    },
+    {
+      "question": "Last question?",
+      "isMultiple": true,
+      "time": 90,
+      "choices": [{
+          "index": 0,
+          "value": "This one"
+        },
+        {
+          "index": 1,
+          "value": "The next one"
+        },
+        {
+          "index": 2,
+          "value": "The third one"
+        },
+        {
+          "index": 3,
+          "value": "The forth one"
+        }
+      ],
+      "answers": [1, 2]
     }
   ]
 }

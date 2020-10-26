@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
+    "@material-ui/icons": "latest",
     "clsx": "latest",
     "next": "latest",
     "prop-types": "latest",
