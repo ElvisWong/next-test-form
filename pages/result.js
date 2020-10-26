@@ -13,7 +13,8 @@ import {
   TableBody,
 } from '@material-ui/core';
 import Link from '../src/Link';
-import { server } from '../config';
+import path from 'path';
+import fs from 'fs';
 import Copyright from '../src/Copyright';
 import { AnswerContext } from '../src/answerReducer';
 
@@ -91,8 +92,9 @@ export default About;
 export const getStaticProps = async () => {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch(`${server}/json/test.json`);
-  const test = await res.json();
+  const fullPath = path.join(process.cwd(), 'public/json/test.json');
+  const fileContents = fs.readFileSync(fullPath);
+  let test = JSON.parse(fileContents);
 
   return {
     props: {

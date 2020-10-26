@@ -8,7 +8,8 @@ import Copyright from '../src/Copyright';
 import {
   Box, Button,
 } from '@material-ui/core';
-import { server } from '../config';
+import fs from 'fs';
+import path from 'path';
 import { AnswerContext } from '../src/answerReducer';
 
 const useStyles = makeStyles(theme => ({
@@ -101,9 +102,9 @@ export default Index;
 export const getStaticProps = async() => {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  console.log("process: ", process.cwd());
-  const res = await fetch(`${server}/json/test.json`);
-  let test = await res.json();
+  const fullPath = path.join(process.cwd(), 'public/json/test.json');
+  const fileContents = fs.readFileSync(fullPath);
+  let test = JSON.parse(fileContents);
 
   // random shuffle answer order
   test.questions.forEach((q, idx) => q.choices = q.choices.sort(() => .5 - Math.random()));
