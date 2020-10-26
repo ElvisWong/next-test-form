@@ -4,9 +4,8 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import CheckIcon from '@material-ui/icons/Check';
-import CloseIcon from '@material-ui/icons/Close';
 import {
+  Icon,
   Table,
   TableHead,
   TableRow,
@@ -61,7 +60,7 @@ const About = ({ questions, answers }) => {
                       <TableRow key={idx}>
                         <TableCell>{!item.includes(-1) ? item.map(x => questions[idx].choices[Number(x)].value).join(", ") : "Did not answered"}</TableCell>
                         <TableCell>{answers[idx].map(x => questions[idx].choices[Number(x)].value).join(", ")}</TableCell>
-                        <TableCell>{JSON.stringify(answers[idx]) === JSON.stringify(item) ? <CheckIcon /> : <CloseIcon />}</TableCell>
+                        <TableCell>{JSON.stringify(answers[idx]) === JSON.stringify(item) ? <Icon>check</Icon> : <Icon>close</Icon>}</TableCell>
                       </TableRow>
                     ))
                   }
