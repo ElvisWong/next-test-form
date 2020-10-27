@@ -16,6 +16,5 @@
     "build": "next build",
     "start": "next start"
   },
-  "author": "Elvis Wong",
-  "license": "MIT"
+  "author": "Elvis Wong"
 }

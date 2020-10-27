@@ -29,8 +29,8 @@ const Result = ({ questions, answers }) => {
   const [score, setScore] = useState();
 
   useEffect(() => {
-    if (ans.ans) {
-      const totalScore = ans.ans.filter((x, idx) => JSON.stringify(x) === answers[idx]).length;
+    if (ans?.ans) {
+      const totalScore = Object.values(ans?.ans).filter((x, idx) => JSON.stringify(x) === JSON.stringify(answers[idx])).length;
       setScore(totalScore);
     }
   }, [ans]);
