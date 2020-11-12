@@ -5,8 +5,15 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import AnswerContextProvider from '../src/answerReducer';
+import { dispatchFcpEvent } from '../src/Copyright';
 
-export default function MyApp(props) {
+export function reportWebVitals(result) {
+  if (result.name === "FCP") {
+    dispatchFcpEvent(result);
+  }
+};
+
+const MyApp = (props) => {
   const { Component, pageProps } = props;
 
   useEffect(() => {
@@ -34,7 +41,4 @@ export default function MyApp(props) {
   );
 }
 
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.object.isRequired,
-};
+export default MyApp;

@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Index({ title, questions }) {
+const Index = ({ title, questions }) => {
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [currentIndex, setCurrentIndex] = useState(-1);
   // const [state, dispatch] = useReducer(AnswerReducer, answerInitialState);
